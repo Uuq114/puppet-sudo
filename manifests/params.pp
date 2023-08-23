@@ -234,6 +234,21 @@ class sudo::params {
       $package_provider   = undef
       $wheel_config       = 'absent'
     }
+    'Openeuler': {
+      $package = 'sudo'
+      $package_ldap = 'openldap'
+      $package_ensure     = 'present'
+      $package_source     = undef
+      $package_admin_file = undef
+      $config_file        = '/etc/sudoers'
+      $config_dir         = '/etc/sudoers.d'
+      $content_template   = "${content_base}sudoers.openeuler.erb"
+      $secure_path        = '/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin'
+      $config_file_group  = 'root'
+      $config_dir_keepme  = false
+      $package_provider   = undef
+      $wheel_config       = 'password'
+    }
     default: {
       case $facts['os']['name'] {
         'Gentoo': {
